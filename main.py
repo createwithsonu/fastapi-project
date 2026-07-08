@@ -10,7 +10,14 @@ def get_job(job_id:int):
 
 #Query Parameters
 @app.get("/jobs")
-def get_jobs(job_id:int=None, job_name:str=None):
+def get_jobs(job_id:int=0, job_name:str=None):
+    return{
+        "job_id":job_id,
+        "job_name":job_name,
+    }
+
+@app.post("/create-job")
+def create_job(job_id:int=0, job_name:str=None):
     return{
         "job_id":job_id,
         "job_name":job_name,
