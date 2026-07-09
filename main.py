@@ -26,3 +26,22 @@ def get_todo_by_id(todo_id: int):
         if todo.id == todo_id:
             return todo
     return {"message": "Todo not found"}
+
+#Updating a specific todo by id using path parameter
+@app.put("/todo/{todo_id}")
+def update_todo(todo_id: int, updated_todo: Todo):
+    for index, todo in enumerate(todos):
+        if todo.id == todo_id:
+            todos[index] = updated_todo
+            return {"message": "Todo updated successfully", "todo": updated_todo}
+    return {"message": "Todo not found"}
+
+
+#Deleting a specific todo by id using path parameter
+@app.delete("/todo/{todo_id}")
+def delete_todo(todo_id: int):
+    for index, todo in enumerate(todos):
+        if todo.id == todo_id:
+            deleted_todo = todos.pop(index)
+            return {"message": "Todo deleted successfully", "todo": deleted_todo}
+    return {"message": "Todo not found"}
